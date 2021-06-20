@@ -11,3 +11,93 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button {
+  height: 4em;
+  min-width: 4em;
+}
+
+button p {
+  font-size: 1.5em;
+  margin: auto;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #666;
+  border-radius: 2px;
+  padding: 2em;
+  margin: 1em;
+  width: 50%;
+}
+
+.timer-display {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 1em auto;
+  margin-top: 0;
+}
+
+.timer-controls {
+  display: flex;
+  flex-direction: row;
+  width: 66%;
+}
+
+.timer-controls>* {
+  flex: 1;
+  flex-grow: auto;
+}
+
+.settings {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #666;
+  border-radius: 2px;
+  padding: 2em;
+  margin: 1em;
+  width: 33%;
+}
+
+.settings-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+}
+
+.settings-inputs>* {
+  flex: 1;
+  flex-grow: auto;
+}
+
+.settings-length {
+  margin: 0 1em;
+}
+
+.settings-length p {
+  margin: auto;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
