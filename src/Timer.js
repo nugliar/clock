@@ -1,79 +1,86 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { selectTimer, resetTimer } from './timerSlice'
 import { Button } from './Button'
+import { DisplayTimer } from './DisplayTimer'
 
 export const Timer = () => {
-  const [ timer, setTimer ] = useState({
-    start: undefined,
-    pause: undefined,
-    id: undefined,
-    active: false
+  const timer = useSelector(selectTimer)
+  const [ status, setStatus ] = useState({
+    active: false,
+    mode: 'session',
+    id: undefined
   })
-  const [ time, setTime ] = useState(undefined)
+  const [ elapsedTime, setElapsedTime ] = useState(timer.length[status.mode] * 1000)
+  const [ startTime, setStartTime ] = useState(undefined)
+
+  const dispatch = useDispatch()
 
   const startTimer = () => {
-    if (!timer.active) {
-      const start = timer.start + (Date.now() - timer.pause) || Date.now()
+    if (!status.active) {
+      let start = startTime || Date.now()
+      let delay = 1000 - ((Date.now() - startTime) % 1000)
+      let mode = status.mode
+      let msec = timer.length[mode] * 1000
 
-      setTimeout(
-        () => {
-          setTime(Date.now())
-          clearInterval(timer.id)
-          const id = setInterval(() => setTime(Date.now()), 1000)
-          setTimer({...timer, start: start, id: id, active: true})
-        },
-        1000 - (timer.pause - timer.start % 1000) || 0
-      )
+
+      function timeout() {
+        const id = setTimeout(timeout, delay)
+        delay = 1000
+
+        if (msec < 0) {
+          start = Date.now()
+          mode = mode === 'session' ? 'break' : 'session'
+          msec = timer.length[mode] * 1000
+        } else {
+          msec = timer.length[mode] * 1000 - (Date.now() - start)
+        }
+
+        setStatus({
+          active: true,
+          mode: mode,
+          id: id,
+        })
+
+        setElapsedTime(msec)
+        setStartTime(start)
+      }
+
+      timeout()
     }
   }
 
   const pauseTimer = () => {
-    if (timer.active) {
-      clearInterval(timer.id)
-      setTimer({
-        ...timer,
-        pause: Date.now(),
-        id: undefined,
-        active: false
+    if (status.active) {
+      clearTimeout(status.id)
+      setStatus({
+        active: false,
+        id: undefined
       })
     }
   }
 
-  const resetTimer = () => {
-    clearInterval(timer.id)
-    setTimer({
-      start: undefined,
-      pause: undefined,
-      id: undefined,
-      active: false
+  const initTimer = () => {
+    clearTimeout(status.id)
+    dispatch(resetTimer())
+    setStatus({
+      active: false,
+      mode: 'session',
+      id: undefined
     })
-  }
-
-  const DisplayTime = () => {
-    const msec = time - timer.start || 0
-    const seconds = Math.round(msec / 1000)
-    const minutes = Math.floor(seconds / 60)
-    const hours = Math.floor(minutes / 60)
-
-    const f = (number) => {
-      const numberDisplay = number.toString().slice(0, 2)
-      return '0'.repeat(2 - numberDisplay.length).concat(numberDisplay)
-    }
-
-    return (
-      <p className='timer-display'>
-        {`${f(hours % 24)}:${f(minutes % 60)}:${f(seconds % 60)}`}
-      </p>
-    )
+    setElapsedTime(timer.length['session'] * 1000)
+    setStartTime(undefined)
   }
 
   return (
     <div className='timer'>
-      <h2 id='timer-label'>Session</h2>
-      <DisplayTime />
+      <h2 id='timer-label'>{timer.mode}</h2>
+      <DisplayTimer msec={elapsedTime} />
       <div className='timer-controls'>
         <Button label='Start' onClick={startTimer} />
         <Button label='Pause' onClick={pauseTimer} />
-        <Button label='Reset' onClick={resetTimer} />
+        <Button label='Reset' onClick={initTimer} />
       </div>
     </div>
   )

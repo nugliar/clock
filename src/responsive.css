@@ -1,0 +1,55 @@
+@media (max-width: 800px) and (orientation: portrait) {
+  body {
+    font-size: 14px;
+  }
+
+  .App {
+    justify-content: flex-start;
+    height: 100%;
+  }
+
+  .App>* {
+    flex-grow: auto;
+  }
+
+  .settings {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .settings>* {
+    flex-grow: 1;
+  }
+
+  .settings-section {
+    width: 100%;
+  }
+
+  .timer {
+    flex-grow: 2;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .timer-controls {
+    flex-direction: column;
+  }
+}
+
+@media (max-height: 600px) {
+  body {
+    font-size: 12px;
+  }
+
+  button {
+    height: 3em;
+    min-width: 3em;
+  }
+
+  .settings-section {
+    padding: 1em;
+  }
+}
