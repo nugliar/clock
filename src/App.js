@@ -1,13 +1,11 @@
-import { Timer } from './Timer'
-import { Settings } from './Settings'
+import { Clock } from './Clock'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
       </header>
-      <Settings />
-      <Timer />
+      <Clock />
     </div>
   );
 }

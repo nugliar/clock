@@ -1,18 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux'
-
-import {
-  incrementLength,
-  decrementLength,
-  selectTimer,
-} from './timerSlice'
-
 import { Button } from './Button'
 import { Length } from './Length'
 
-export const Settings = () => {
-  const timer = useSelector(selectTimer)
-
-  const dispatch = useDispatch()
+export const Settings = (props) => {
 
   return (
     <div className='settings'>
@@ -24,13 +13,13 @@ export const Settings = () => {
           <Button
             id='break-decrement'
             label='-'
-            onClick={() => dispatch(decrementLength('break'))}
+            onClick={() => props.onDecrementClick('break')}
           />
-          <Length id='break-length' value={timer.length.break} />
+          <Length id='break-length' value={props.breakLength} />
           <Button
             id='break-increment'
             label='+'
-            onClick={() => dispatch(incrementLength('break'))}
+            onClick={() => props.onIncrementClick('break')}
           />
         </div>
       </div>
@@ -42,13 +31,13 @@ export const Settings = () => {
           <Button
             id='session-decrement'
             label='-'
-            onClick={() => dispatch(decrementLength('session'))}
+            onClick={() => props.onDecrementClick('session')}
           />
-          <Length id='session-length'value={timer.length.session} />
+          <Length id='session-length' value={props.sessionLength} />
           <Button
             id='session-increment'
             label='+'
-            onClick={() => dispatch(incrementLength('session'))}
+            onClick={() => props.onIncrementClick('session')}
           />
         </div>
       </div>
