@@ -5,11 +5,14 @@ export const Timer = (props) => {
   return (
     <div className='timer'>
       <h2 id='timer-label'>{props.mode}</h2>
-      <DisplayTimer msec={props.elapsedTime} />
+      <DisplayTimer
+        msec={props.elapsedTime}
+        active={props.active}
+        alarmBreak={props.alarmBreak}
+      />
       <div className='timer-controls'>
-        <Button label='Start' onClick={props.onStart} />
-        <Button label='Pause' onClick={props.onPause} />
-        <Button label='Reset' onClick={props.onReset} />
+        <Button id='start_stop' label='Start/Stop' onClick={props.onStart} />
+        <Button id='reset' label='Reset' onClick={props.onReset} />
       </div>
     </div>
   )
