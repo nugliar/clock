@@ -8,7 +8,6 @@ export const Timer = (props) => {
       <DisplayTimer
         msec={props.elapsedTime}
         active={props.active}
-        alarmBreak={props.alarmBreak}
       />
       <div className='timer-controls'>
         <Button id='start_stop' label='Start/Stop' onClick={props.onStart} />

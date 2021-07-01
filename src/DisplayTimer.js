@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 
 export const DisplayTimer = (props) => {
-  let msec = props.alarmBreak ? 0 : props.msec
+  let msec = props.msec >= 0 ? props.msec : 0
 
   const format = (msec) => {
+
     const secs = Math.floor(msec / 1000)
     const mins = Math.floor(secs / 60)
 
@@ -13,7 +14,7 @@ export const DisplayTimer = (props) => {
     }
 
     return (
-      `${f(mins % 60, 2)}:${f(secs % 60, 2)}:${f(msec % 1000, 3)}`
+      `${f(mins, 2)}:${f(secs % 60, 2)}:${f(msec % 1000, 3)}`
     )
   }
 
@@ -37,6 +38,10 @@ export const DisplayTimer = (props) => {
     let id = undefined
 
     const timeout = () => {
+      if (msec <= 0) {
+        timerElement.innerHTML = format(0)
+        return
+      }
       if (props.active) {
         msec -= Date.now() - start
         timerElement.innerHTML = format(msec)
@@ -46,10 +51,7 @@ export const DisplayTimer = (props) => {
         clearTimeout(id)
       }
     }
-
-    if (msec > 0) {
-      timeout()
-    }
+    timeout()
     return () => clearTimeout(id)
   })
 
