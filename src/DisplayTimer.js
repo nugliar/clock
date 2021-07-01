@@ -19,7 +19,7 @@ export const DisplayTimer = (props) => {
   }
 
   const dummyFormat = (msec) => {
-    const secs = Math.round(msec / 1000)
+    const secs = Math.ceil(msec / 1000)
     const mins = Math.floor(secs / 60)
 
     const f = (number, ndigits) => {
@@ -28,7 +28,7 @@ export const DisplayTimer = (props) => {
     }
 
     return (
-      `${f(mins % 60, 2)}:${f(secs % 60, 2)}`
+      `${f(mins, 2)}:${f(secs % 60, 2)}`
     )
   }
 

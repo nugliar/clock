@@ -16,8 +16,8 @@ import alarmSound from './audio/classic-short-alarm.wav'
 // than actual elapsed time value
 
 const DEFAULT_LENGTH = {
-  break: 2 + 1, // minutes
-  session: 2 + 1 // minutes
+  break: 5 * 60 + 1, // seconds
+  session: 25 * 60 + 1 // seconds
 }
 
 export const Clock = () => {
@@ -35,7 +35,7 @@ export const Clock = () => {
   const alarmSet = useRef(true)
 
   const setTimerLength = (mode, newLength) => {
-    newLength = Math.min(60, Math.max(1, newLength))
+    newLength = Math.min(60 * 60 + 1, Math.max(1 * 60 + 1, newLength))
 
     if (!timer.active) {
       setLength({
@@ -56,11 +56,11 @@ export const Clock = () => {
   }
 
   const onIncrementClick = (mode) => {
-    setTimerLength(mode, length[mode] + 1)
+    setTimerLength(mode, length[mode] + 1 * 60)
   }
 
   const onDecrementClick = (mode) => {
-    setTimerLength(mode, length[mode] - 1)
+    setTimerLength(mode, length[mode] - 1 * 60)
   }
 
   const startTimer = () => {
@@ -123,6 +123,7 @@ export const Clock = () => {
     const audioElement = document.getElementById('beep')
 
     audioElement.pause()
+    audioElement.currentTime = 0
     clearTimeout(timer.id)
     setLength(DEFAULT_LENGTH)
     setTimer({
