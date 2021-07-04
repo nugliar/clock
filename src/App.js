@@ -9,7 +9,7 @@ function App() {
       </header>
       <Clock />
       <div className='description'>
-        <a className='link' href='https://github.com/nugliar/calculator'>
+        <a className='link' href='https://github.com/nugliar/clock'>
           <div>
             <img src={githubIcon} alt='git' />
           </div>
