@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/clock/static/css/main.99088976.chunk.css",
+    "main.css": "/clock/static/css/main.e9cb8c0b.chunk.css",
     "main.js": "/clock/static/js/main.f2b62e19.chunk.js",
     "main.js.map": "/clock/static/js/main.f2b62e19.chunk.js.map",
     "runtime-main.js": "/clock/static/js/runtime-main.ff65c691.js",
@@ -8,14 +8,14 @@
     "static/js/2.f6257736.chunk.js": "/clock/static/js/2.f6257736.chunk.js",
     "static/js/2.f6257736.chunk.js.map": "/clock/static/js/2.f6257736.chunk.js.map",
     "index.html": "/clock/index.html",
-    "static/css/main.99088976.chunk.css.map": "/clock/static/css/main.99088976.chunk.css.map",
+    "static/css/main.e9cb8c0b.chunk.css.map": "/clock/static/css/main.e9cb8c0b.chunk.css.map",
     "static/js/2.f6257736.chunk.js.LICENSE.txt": "/clock/static/js/2.f6257736.chunk.js.LICENSE.txt",
     "static/media/classic-short-alarm.0ac31e5c.wav": "/clock/static/media/classic-short-alarm.0ac31e5c.wav"
   },
   "entrypoints": [
     "static/js/runtime-main.ff65c691.js",
     "static/js/2.f6257736.chunk.js",
-    "static/css/main.99088976.chunk.css",
+    "static/css/main.e9cb8c0b.chunk.css",
     "static/js/main.f2b62e19.chunk.js"
   ]
 }
