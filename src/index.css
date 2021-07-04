@@ -75,6 +75,7 @@ h1, h2, h3, h4 {
 .fake-timer-display {
   width: 0;
   height: 0;
+  z-index: -1;
 }
 
 .timer-display {
