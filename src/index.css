@@ -24,7 +24,7 @@ button {
   height: 4em;
   min-width: 4em;
   background-color: var(--utility-color);
-  border: 1px solid var(--secondary-bg-color);
+  border: 1px solid #ccc;
   border-radius: 3px;
 }
 
@@ -36,7 +36,7 @@ button p {
 }
 
 button:hover {
-  border: 1px solid var(--utility-color);
+  border: 1px solid var(--secondary-bg-color);
 }
 
 h1, h2, h3, h4 {
