@@ -37,6 +37,10 @@
   .timer-controls {
     flex-direction: column;
   }
+
+  .timer-controls button {
+    padding: 1em 0;
+  }
 }
 
 @media (max-height: 600px) {
